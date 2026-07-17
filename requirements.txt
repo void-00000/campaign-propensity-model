@@ -1,0 +1,31 @@
+# Every Python package this project needs, so anyone can recreate your setup with:
+#   pip install -r requirements.txt
+# ">=" means "this version or newer".
+
+# --- Data handling ---
+pandas>=2.2            # tables ("DataFrames") — think Excel controlled by code
+numpy>=1.26            # fast math on arrays; pandas is built on top of it
+
+# --- Database ---
+SQLAlchemy>=2.0        # lets Python talk to PostgreSQL in a uniform way
+psycopg2-binary>=2.9.10  # the actual PostgreSQL driver SQLAlchemy uses under the hood
+python-dotenv>=1.0     # reads our .env file so passwords aren't hardcoded
+
+# --- Machine learning ---
+scikit-learn>=1.5      # Logistic Regression, train/test splitting, metrics
+xgboost>=2.1           # the gradient-boosted tree model — our main model
+imbalanced-learn>=0.12 # SMOTE, one of the class-imbalance techniques (Phase 3)
+
+# --- Explainability ---
+shap>=0.46             # explains WHY the model made each prediction (Phase 6)
+
+# --- Charts ---
+matplotlib>=3.9        # the base plotting library
+seaborn>=0.13          # prettier statistical charts built on matplotlib
+
+# --- Dashboard ---
+streamlit>=1.38        # turns a Python script into a web app (Phase 7)
+
+# --- Utilities ---
+requests>=2.32         # downloads the dataset from the UCI repository
+joblib>=1.4            # saves/loads the trained model to disk

@@ -1,0 +1,93 @@
+feature,importance,direction,effect,theme
+nr_employed,0.4625656,-0.7306500395847133,higher -> LESS likely to say yes,Macroeconomic conditions
+is_low_rate_period,0.14694826,0.9777636776116446,higher -> MORE likely to say yes,Macroeconomic conditions
+euribor3m,0.12202762,-0.5807154823516797,higher -> LESS likely to say yes,Macroeconomic conditions
+is_cellular,0.11386533,0.9503832412485802,higher -> MORE likely to say yes,Contact channel
+emp_var_rate,0.10275731,-0.9030594787942352,higher -> LESS likely to say yes,Macroeconomic conditions
+cons_conf_idx,0.058947686,-0.25055479530393093,higher -> LESS likely to say yes,Macroeconomic conditions
+age,0.04807455,-0.5158584434344501,higher -> LESS likely to say yes,Demographics
+days_since_prev_contact,0.045378156,-0.03116124591919619,mixed / non-linear,Prior relationship / recency
+cons_price_idx,0.041764382,-0.5573417087545478,higher -> LESS likely to say yes,Macroeconomic conditions
+credit_default_no,0.038971752,0.9003719920293592,higher -> MORE likely to say yes,Demographics
+contact_cellular,0.036872625,0.9265741538630188,higher -> MORE likely to say yes,Contact channel
+day_of_week_mon,0.031151423,-0.8851188439097853,higher -> LESS likely to say yes,Timing (month / day / season)
+month_may,0.029619226,-0.9298837539574282,higher -> LESS likely to say yes,Timing (month / day / season)
+campaign,0.029161038,-0.7868887274176815,higher -> LESS likely to say yes,Campaign intensity
+is_high_season,0.028016634,0.9073872668476604,higher -> MORE likely to say yes,Timing (month / day / season)
+prev_failure,0.02742591,-0.9510951215775458,higher -> LESS likely to say yes,Prior relationship / recency
+was_contacted_before,0.026762933,0.9375124669537243,higher -> MORE likely to say yes,Prior relationship / recency
+day_of_week_wed,0.024929864,0.9057075137037894,higher -> MORE likely to say yes,Timing (month / day / season)
+total_contacts,0.023525475,-0.8439010608919915,higher -> LESS likely to say yes,Prior relationship / recency
+prev_success,0.018911125,0.9072051747142499,higher -> MORE likely to say yes,Prior relationship / recency
+loan_yes,0.018782794,0.8486858745559909,higher -> MORE likely to say yes,Demographics
+education_years,0.01844438,0.6110916462030037,higher -> MORE likely to say yes,Demographics
+job_retired,0.014062624,0.9036999530890721,higher -> MORE likely to say yes,Demographics
+age_band_age_35_44,0.012172887,-0.5900723068553215,higher -> LESS likely to say yes,Demographics
+month_oct,0.01157811,0.8284954975838023,higher -> MORE likely to say yes,Timing (month / day / season)
+education_professional.course,0.011261864,-0.9243593060504848,higher -> LESS likely to say yes,Demographics
+job_blue-collar,0.008818371,-0.7184758703154301,higher -> LESS likely to say yes,Demographics
+poutcome_failure,0.008745946,-0.8951275854770997,higher -> LESS likely to say yes,Prior relationship / recency
+prior_contact_ratio,0.008262368,-0.6886969311459348,higher -> LESS likely to say yes,Prior relationship / recency
+marital_single,0.007907966,0.7344499542438692,higher -> MORE likely to say yes,Demographics
+housing_unknown,0.007831242,-0.9170710102808987,higher -> LESS likely to say yes,Demographics
+poutcome_success,0.0078101587,0.9312597080246489,higher -> MORE likely to say yes,Prior relationship / recency
+month_nov,0.0072037447,-0.7417309276615046,higher -> LESS likely to say yes,Timing (month / day / season)
+marital_divorced,0.007151197,-0.8884737757060329,higher -> LESS likely to say yes,Demographics
+housing_no,0.0064516943,0.6761578718466921,higher -> MORE likely to say yes,Demographics
+job_admin.,0.005982273,-0.6707439505819616,higher -> LESS likely to say yes,Demographics
+day_of_week_fri,0.0053645167,-0.0414335216707629,mixed / non-linear,Timing (month / day / season)
+age_band_age_25_34,0.005212661,0.49303203617940117,higher -> MORE likely to say yes,Demographics
+month_jul,0.005059907,0.7119640474309268,higher -> MORE likely to say yes,Timing (month / day / season)
+marital_married,0.0046967305,0.3380382563178018,higher -> MORE likely to say yes,Demographics
+previous,0.004557792,-0.7801161944416839,higher -> LESS likely to say yes,Prior relationship / recency
+campaign_intensity_bucket_light_touch,0.004131901,0.5606247913498449,higher -> MORE likely to say yes,Campaign intensity
+day_of_week_tue,0.004088816,-0.33358980641926206,higher -> LESS likely to say yes,Timing (month / day / season)
+education_basic.9y,0.0038331333,-0.4201371505193044,higher -> LESS likely to say yes,Demographics
+has_any_loan,0.0038110416,0.33407830858048665,higher -> MORE likely to say yes,Demographics
+job_services,0.003687222,-0.7168656700460586,higher -> LESS likely to say yes,Demographics
+job_management,0.0034537686,0.36689614694537814,higher -> MORE likely to say yes,Demographics
+credit_default_unknown,0.0033822746,-0.678545517548852,higher -> LESS likely to say yes,Demographics
+job_student,0.0032619592,0.8761288377258285,higher -> MORE likely to say yes,Demographics
+day_of_week_thu,0.00321065,-0.09972917328204248,higher -> LESS likely to say yes,Timing (month / day / season)
+campaign_intensity_bucket_persistent,0.0027297072,-0.787968485424861,higher -> LESS likely to say yes,Campaign intensity
+education_basic.4y,0.0026479864,-0.6984603448418704,higher -> LESS likely to say yes,Demographics
+quarter_Q2,0.0026401302,-0.8573392920407634,higher -> LESS likely to say yes,Timing (month / day / season)
+job_technician,0.0025673504,-0.6257215124574996,higher -> LESS likely to say yes,Demographics
+month_aug,0.0024636295,0.7818920252722641,higher -> MORE likely to say yes,Timing (month / day / season)
+campaign_intensity_bucket_single_call,0.0022941031,-0.5825150613778629,higher -> LESS likely to say yes,Campaign intensity
+job_housemaid,0.0022577785,-0.7535804838384551,higher -> LESS likely to say yes,Demographics
+loan_no,0.0021785032,0.6081879151240627,higher -> MORE likely to say yes,Demographics
+education_high.school,0.0021451782,0.43159600092057127,higher -> MORE likely to say yes,Demographics
+month_mar,0.0021098505,0.9474728683224403,higher -> MORE likely to say yes,Timing (month / day / season)
+job_self-employed,0.0020518522,-0.17079445513758945,higher -> LESS likely to say yes,Demographics
+education_basic.6y,0.0020280913,0.7832244120059552,higher -> MORE likely to say yes,Demographics
+housing_yes,0.0020118789,0.23418147939785364,higher -> MORE likely to say yes,Demographics
+job_unemployed,0.0019933365,-0.8649089399799891,higher -> LESS likely to say yes,Demographics
+recency_bucket_never,0.0019190735,-0.7570775342780147,higher -> LESS likely to say yes,Prior relationship / recency
+quarter_Q4,0.0018540365,-0.09019699244281189,higher -> LESS likely to say yes,Timing (month / day / season)
+age_band_age_45_54,0.0017317928,-0.4160366755496753,higher -> LESS likely to say yes,Demographics
+education_university.degree,0.0017151418,-0.36082076922556433,higher -> LESS likely to say yes,Demographics
+job_entrepreneur,0.001685225,0.8376035330777921,higher -> MORE likely to say yes,Demographics
+poutcome_nonexistent,0.0016719785,0.7571430086171119,higher -> MORE likely to say yes,Prior relationship / recency
+month_apr,0.0015461906,-0.28415356046829754,higher -> LESS likely to say yes,Timing (month / day / season)
+quarter_Q3,0.0014996126,-0.6528798320340778,higher -> LESS likely to say yes,Timing (month / day / season)
+is_life_stage_edge,0.0012024393,0.2838263281926521,higher -> MORE likely to say yes,Demographics
+contact_fatigue,0.0011976378,-0.749588014390269,higher -> LESS likely to say yes,Campaign intensity
+marital_unknown,0.0011867266,0.9410759837981852,higher -> MORE likely to say yes,Demographics
+campaign_intensity_bucket_excessive,0.00091882475,-0.6299887705060907,higher -> LESS likely to say yes,Campaign intensity
+recency_bucket_within_week,0.0007055958,0.8648877517353402,higher -> MORE likely to say yes,Prior relationship / recency
+loan_unknown,0.00065082405,-0.7007160292668286,higher -> LESS likely to say yes,Demographics
+quarter_Q1,0.00064556557,0.9017774064448806,higher -> MORE likely to say yes,Timing (month / day / season)
+age_band_age_55_64,0.00061054516,0.2960680350220775,higher -> MORE likely to say yes,Demographics
+month_jun,0.000463858,-0.23786378853251303,higher -> LESS likely to say yes,Timing (month / day / season)
+education_unknown,0.00046011026,-0.6195701562903837,higher -> LESS likely to say yes,Demographics
+month_dec,0.00045762258,0.943501044562547,higher -> MORE likely to say yes,Timing (month / day / season)
+job_unknown,0.0004142504,0.3434062845340456,higher -> MORE likely to say yes,Demographics
+recency_bucket_within_fortnight,0.0002440554,-0.7418438387005197,higher -> LESS likely to say yes,Prior relationship / recency
+contact_telephone,0.0,0.0,mixed / non-linear,Contact channel
+education_illiterate,0.0,0.0,mixed / non-linear,Demographics
+credit_default_yes,0.0,0.0,mixed / non-linear,Demographics
+recency_bucket_over_fortnight,0.0,0.0,mixed / non-linear,Prior relationship / recency
+month_sep,0.0,0.0,mixed / non-linear,Timing (month / day / season)
+age_band_age_65_plus,0.0,0.0,mixed / non-linear,Demographics
+age_band_under_25,0.0,0.0,mixed / non-linear,Demographics

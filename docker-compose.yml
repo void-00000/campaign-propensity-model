@@ -1,0 +1,45 @@
+# This file tells Docker how to run a PostgreSQL database for us.
+# "docker compose up -d" reads this file and starts the database in the background.
+# "docker compose down" stops it. Your data survives a stop/start (see "volumes" below).
+
+services:
+  db:
+    # The exact database software + version we want. Docker downloads this for us.
+    # Pinning the version (16, not "latest") means this project behaves the same
+    # next month as it does today. Interviewers like hearing "I pinned my versions."
+    image: postgres:16
+
+    # A friendly name so "docker ps" output is readable.
+    container_name: bank_campaign_db
+
+    # If your PC restarts, bring the database back up automatically.
+    restart: unless-stopped
+
+    # These three values CREATE the user, password, and database on first startup.
+    # They are read from the .env file sitting next to this file.
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+    # "HOST_PORT:CONTAINER_PORT" — makes the database inside the container
+    # reachable from Windows at localhost:5432. Postgres always listens on 5432
+    # inside its own container; the left number is what YOUR machine sees.
+    ports:
+      - "${POSTGRES_PORT}:5432"
+
+    # A named volume = a disk that lives outside the container. Without this,
+    # deleting the container would delete your data. With it, data persists.
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+    # Docker asks the database "are you ready yet?" until it answers yes.
+    # Useful because Postgres takes a few seconds to initialize on first run.
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:
