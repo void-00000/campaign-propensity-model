@@ -1,5 +1,10 @@
 # Customer Propensity & Campaign-Response Model
 
+### ▶ [**Try the live dashboard**](https://campaign-propensity-model-djaftj2gummd232pchdnsk.streamlit.app/)
+
+*Hosted on Streamlit Cloud, reading a live PostgreSQL database on Neon. The
+database sleeps when idle, so the first load may take a few seconds to wake it.*
+
 Predicts which bank customers will subscribe to a term deposit, so a marketing
 team can call the ~10% most likely to say yes instead of calling everyone.
 
@@ -69,8 +74,18 @@ Full numbers: [`outputs/metrics.md`](outputs/metrics.md)
 ![SHAP summary](outputs/figures/08_shap_summary.png)
 *SHAP: how each feature moves each customer's score. Red = high value, right = pushed toward "yes".*
 
-> **Dashboard screenshot:** run `streamlit run app/dashboard.py`, then save a
-> screenshot to `outputs/figures/10_dashboard.png` and it will render here.
+### The dashboard
+
+![Dashboard](outputs/figures/10_dashboard.png)
+
+*The ranked call list, with a live campaign simulator — move the budget slider
+and every number recomputes. Shown here at a **20% call budget**: 1,647 calls
+find 619 buyers, a 37.6% response rate and **3.34x** lift, capturing 66.7% of all
+responders. Set the slider to 10% and lift rises to the headline **4.71x** —
+cumulative lift is always highest at the top of the list and falls as you call
+deeper into it.*
+
+**[Try it live →](https://campaign-propensity-model-djaftj2gummd232pchdnsk.streamlit.app/)**
 
 ---
 

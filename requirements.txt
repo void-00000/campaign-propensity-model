@@ -1,31 +1,68 @@
-# Every Python package this project needs, so anyone can recreate your setup with:
+# Every Python package this project needs:
 #   pip install -r requirements.txt
-# ">=" means "this version or newer".
+#
+# ---------------------------------------------------------------------------
+# WHY THESE VERSIONS ARE PINNED EXACTLY (==) AND NOT >=
+# ---------------------------------------------------------------------------
+# These started as ">=" ("this version or newer"), which is the friendlier
+# default and is wrong for this project.
+#
+# The reason is outputs/models/*.joblib. A pickled scikit-learn or XGBoost
+# model is COUPLED to the library version that created it -- it stores the
+# internal object layout of that specific version. Load a scikit-learn 1.9
+# pickle under a future 1.11 and you get an InconsistentVersionWarning at best,
+# and a genuine failure at worst.
+#
+# With ">=", Streamlit Cloud installs whatever is newest ON THE DAY IT BUILDS.
+# That day might be six months from now. The app deployed fine today and would
+# break later, on its own, with no commit from me -- and I'd find out when
+# someone told me my portfolio link was broken. That's the worst failure mode
+# there is: silent, delayed, and discovered by someone else.
+#
+# Pinning means the cloud builds the environment I actually tested, today and
+# in a year. The tradeoff is real: pinned dependencies don't pick up security
+# patches automatically, so they need occasional deliberate review. For a
+# project shipping version-coupled model artifacts, that tradeoff is worth it.
+#
+# To upgrade deliberately: bump a pin, re-run `python src/run_all.py` to
+# regenerate the models under the new version, confirm the metrics still match,
+# and commit both together. The models and these pins are one unit.
+#
+# Versions below are what produced the documented results:
+#   AUC 0.8156, top-decile lift 4.71x
+# ---------------------------------------------------------------------------
 
 # --- Data handling ---
-pandas>=2.2            # tables ("DataFrames") — think Excel controlled by code
-numpy>=1.26            # fast math on arrays; pandas is built on top of it
+pandas==3.0.3            # tables ("DataFrames") — think Excel controlled by code
+numpy==2.4.6             # fast math on arrays; pandas is built on top of it
 
 # --- Database ---
-SQLAlchemy>=2.0        # lets Python talk to PostgreSQL in a uniform way
-psycopg2-binary>=2.9.10  # the actual PostgreSQL driver SQLAlchemy uses under the hood
-python-dotenv>=1.0     # reads our .env file so passwords aren't hardcoded
+SQLAlchemy==2.0.51       # lets Python talk to PostgreSQL in a uniform way
+psycopg2-binary==2.9.12  # the actual PostgreSQL driver SQLAlchemy uses
+python-dotenv==1.2.2     # reads our .env file so passwords aren't hardcoded
 
 # --- Machine learning ---
-scikit-learn>=1.5      # Logistic Regression, train/test splitting, metrics
-xgboost>=2.1           # the gradient-boosted tree model — our main model
-imbalanced-learn>=0.12 # SMOTE, one of the class-imbalance techniques (Phase 3)
+# scikit-learn and xgboost are the two that MUST stay pinned: they created the
+# .joblib files in outputs/models/ that the deployed app loads.
+scikit-learn==1.9.0      # Logistic Regression, train/test split, metrics
+xgboost==3.3.0           # gradient-boosted trees — our main model
+imbalanced-learn==0.14.2 # SMOTE, for the Phase 3 comparison
+scipy==1.18.0            # scikit-learn's numerical backbone
 
 # --- Explainability ---
-shap>=0.46             # explains WHY the model made each prediction (Phase 6)
+shap==0.52.0             # explains WHY the model made each prediction
+numba==0.66.0            # SHAP's JIT compiler; strict about its numpy version
+llvmlite==0.48.0         # numba's compiler backend — must match numba
+slicer==0.0.8            # SHAP dependency
+cloudpickle==3.1.2       # SHAP dependency
 
 # --- Charts ---
-matplotlib>=3.9        # the base plotting library
-seaborn>=0.13          # prettier statistical charts built on matplotlib
+matplotlib==3.11.0       # the base plotting library
+seaborn==0.13.2          # prettier statistical charts built on matplotlib
 
 # --- Dashboard ---
-streamlit>=1.38        # turns a Python script into a web app (Phase 7)
+streamlit==1.59.2        # turns a Python script into a web app
 
 # --- Utilities ---
-requests>=2.32         # downloads the dataset from the UCI repository
-joblib>=1.4            # saves/loads the trained model to disk
+requests==2.34.2         # downloads the dataset from the UCI repository
+joblib==1.5.3            # saves/loads the trained model to disk
