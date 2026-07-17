@@ -216,6 +216,73 @@ docker compose down      # stops the DB; your data survives
 
 ---
 
+## Deploying it
+
+The dashboard reads from PostgreSQL. Locally that's the Docker container; in the
+cloud it needs a database the internet can reach. `src/config.py` resolves the
+connection in priority order — `DATABASE_URL` env var → Streamlit secrets →
+local `.env` — so **the same code runs in both places with no edits.**
+
+### 1. Create a free Neon database
+
+1. Sign up at [neon.tech](https://neon.tech) (free tier, GitHub login works).
+2. Create a project — any name, pick the region closest to you.
+3. Copy the connection string from **Connection Details**. It looks like:
+   ```
+   postgresql://neondb_owner:PASSWORD@ep-xxx-xxx.us-east-2.aws.neon.tech/neondb?sslmode=require
+   ```
+
+### 2. Load your data into it
+
+Point the local scripts at Neon by setting `DATABASE_URL`, then run the loader.
+Nothing else changes — the same `load_data.py` that fills Docker fills Neon.
+
+```powershell
+$env:DATABASE_URL = "postgresql://neondb_owner:PASS@ep-xxx.neon.tech/neondb?sslmode=require"
+
+python src/config.py                                  # confirm it says NEON
+python src/load_data.py                               # ~1-2 min over the network
+python src/run_sql.py sql/03_feature_extraction.sql   # rebuild the view
+python src/config.py                                  # confirm table + view exist
+
+Remove-Item Env:\DATABASE_URL                         # back to local Docker
+```
+
+`python src/config.py` prints which database it's talking to and whether the data
+is actually there. Run it before and after — loading 41,000 rows into the wrong
+database is an easy and annoying mistake.
+
+### 3. Deploy on Streamlit Community Cloud
+
+1. Go to [share.streamlit.io](https://share.streamlit.io) and sign in with GitHub.
+2. **New app** → pick this repo → main file path: `app/dashboard.py`
+3. Open **Advanced settings → Secrets** and paste:
+   ```toml
+   DATABASE_URL = "postgresql://neondb_owner:PASS@ep-xxx.neon.tech/neondb?sslmode=require"
+   ```
+4. Deploy. First build takes ~3–5 minutes (installing XGBoost and SHAP).
+
+The trained models are committed to `outputs/models/`, so the cloud app loads
+them directly — it never trains anything.
+
+### Deployment notes
+
+- **Never commit your Neon password.** It goes in Streamlit's Secrets UI, not in
+  the repo. `.gitignore` blocks `.env` and `.streamlit/secrets.toml`;
+  `.streamlit/secrets.toml.example` is committed as the template.
+- **Neon free-tier compute sleeps after ~5 minutes idle.** The first request
+  after a quiet spell takes a second or two to wake it. Fine for a portfolio
+  link; not how you'd run production.
+- **Rotate the password if it ever leaks.** Neon lets you reset it from the
+  dashboard. If a secret reaches a commit, rotating it is the fix — deleting the
+  commit is not, because it's already in the history and possibly in someone's
+  clone.
+- **`pool_pre_ping=True`** is set in `get_engine()`. Cloud databases drop idle
+  connections, and a dead pooled connection produces a baffling error on the
+  next query. This checks the connection is alive first and silently reconnects.
+
+---
+
 ## Dataset
 
 [UCI Bank Marketing](https://archive.ics.uci.edu/dataset/222/bank+marketing)
