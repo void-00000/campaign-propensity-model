@@ -1,6 +1,6 @@
 # Customer Propensity & Campaign-Response Model
 
-### ▶ [**Try the live dashboard**](https://campaign-propensity-model-djaftj2gummd232pchdnsk.streamlit.app/)
+### ▶ [**Try the live dashboard**](https://campaign-propensity-model-su8kqpwrn4gm8msqvbhhmf.streamlit.app/)
 
 *Hosted on Streamlit Cloud, reading a live PostgreSQL database on Neon. The
 database sleeps when idle, so the first load may take a few seconds to wake it.*
@@ -85,7 +85,7 @@ responders. Set the slider to 10% and lift rises to the headline **4.71x** —
 cumulative lift is always highest at the top of the list and falls as you call
 deeper into it.*
 
-**[Try it live →](https://campaign-propensity-model-djaftj2gummd232pchdnsk.streamlit.app/)**
+**[Try it live →](https://campaign-propensity-model-su8kqpwrn4gm8msqvbhhmf.streamlit.app/)**
 
 ---
 
